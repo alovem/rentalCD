@@ -37,5 +37,22 @@ class MasterCategoriesController extends Controller
         return response('Data successfully added');
     }
 
+
+    public function update(Request $request, $id){
+        $data = MasterCategory::where('id',$id)->first();
+        $data->id = $request->input('id');
+        $data->categoryname = $request->input('categoryname');
+        $data->save();
+    
+        return response('Data Updated');
+    }
+    
+    public function destroy($id){
+        $data = MasterCategory::where('id',$id)->first();
+        $data->delete();
+    
+        return response('Data Deleted');
+    }
+
     //
 }
