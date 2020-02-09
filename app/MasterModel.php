@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Master extends Model 
+class MasterModel extends Model 
 {
-    use Authenticatable, Authorizable;
+    //use Authenticatable, Authorizable;
 
     /**
      * The attributes that are mass assignable.
@@ -15,6 +15,8 @@ class Master extends Model
      * @var array
      */
     protected $table = 'mastercds';
+
+    //protected $fillable = 
 
     
 }

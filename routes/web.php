@@ -11,6 +11,10 @@
 |
 */
 
+$router->get('/mastercds', 'MasterController@index');
+$router->get('/mastercds/{id}', 'MasterController@show');
+$router->post('/mastercds', 'MasterController@store');
+
 $router->get('/hello/{name}', function ($name) use ($router) {
     //return $router->app->version();
 	return "<h1>Kodingn</h1><p>Selamat Datang".$name." di Kodingin</p>";
