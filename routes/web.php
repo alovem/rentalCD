@@ -31,6 +31,9 @@ $router->get('/mastercategories', 'MasterCategoriesController@index');
 $router->get('/mastercategories/{id}', 'MasterCategoriesController@show');
 $router->post('/mastercategories', 'MasterCategoriesController@store');
 
+
+$router->post('/rental', 'RentalController@store');
+
 $router->get('/hello/{name}', function ($name) use ($router) {
     //return $router->app->version();
 	return "<h1>Welcome To Rent CD</h1>";
