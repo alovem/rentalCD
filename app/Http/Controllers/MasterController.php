@@ -21,7 +21,11 @@ class MasterController extends Controller
     }
 
     public function index(){
-        $data = MasterModel::all();
+        //$data = MasterModel::all();
+        $data = DB::table('mastercds')
+                      ->join('mastercategory', 'mastercds.category', '=', 'mastercategory.id')
+                     // ->where('mastercds.id','=',$id)
+                      ->select('mastercds.*', 'mastercategory.categoryname')->get();
         return response($data);
     }
     public function show($id){

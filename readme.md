@@ -19,3 +19,65 @@ If you discover a security vulnerability within Lumen, please send an e-mail to 
 ## License
 
 The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+API to get master CD data
+```
+Method      : GET
+
+
+URL         : /mastercds
+Response    : ['id','title',category,qty,price,created_at,update_at,categoryname]
+
+URL         : /mastercds/(id)
+Response    : ['id','title',category,qty,price,created_at,update_at,categoryname]
+
+```
+
+
+API to get insert CD data
+```
+Method      : POST
+
+
+URL         : /mastercds
+Parameter    : ['title',category,qty,price]
+
+```
+
+API to get update CD data
+```
+Method      : POST
+
+
+URL         : /mastercds/(id)
+Response    : ['title',category,qty,price]
+
+```
+
+
+
+API to get master Customer data
+```
+Method      : GET
+
+
+URL         : /mastercustomers
+Response    : ['id','customername',customeraddress,created_at,update_at]
+
+URL         : /mastercustomers/(id)
+Response    : ['id','customername',customeraddress,created_at,update_at]
+
+```
+
+
+API to get master categories data
+```
+Method      : GET
+
+
+URL         : /mastercategories
+Response    : ['id','categoryname',created_at,update_at]
+
+URL         : /mastercategories/(id)
+
+```
