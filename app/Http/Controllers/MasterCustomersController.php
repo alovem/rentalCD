@@ -41,7 +41,7 @@ class MasterCustomersController extends Controller
 
     public function update(Request $request, $id){
         $data = MasterCustomers::where('id',$id)->first();
-        $data->id = $request->input('id');
+        //$data->id = $request->input('id');
         $data->customername = $request->input('customername');
         $data->customeraddress = $request->input('customeraddress');
         $data->save();

@@ -33,6 +33,7 @@ $router->post('/mastercategories', 'MasterCategoriesController@store');
 
 
 $router->post('/rental', 'RentalController@store');
+$router->put('/rental/{id}', 'RentalController@update');
 
 $router->get('/hello/{name}', function ($name) use ($router) {
     //return $router->app->version();
