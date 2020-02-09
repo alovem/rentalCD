@@ -34,7 +34,7 @@ Response    : ['id','title',category,qty,price,created_at,update_at,categoryname
 ```
 
 
-API to get insert CD data
+API to insert CD data
 ```
 Method      : POST
 
@@ -66,6 +66,25 @@ Response    : ['id','customername',customeraddress,created_at,update_at]
 
 URL         : /mastercustomers/(id)
 Response    : ['id','customername',customeraddress,created_at,update_at]
+
+```
+
+
+API to insert master Customer data
+```
+Method      : POST
+
+
+URL         : /mastercustomers
+Parameter    : ['customername',customeraddress]
+
+```
+
+API to update master Customer data
+```
+
+URL         : /mastercustomers/(id)
+Parameter    : ['customername',customeraddress]
 
 ```
 
