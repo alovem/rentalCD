@@ -15,8 +15,16 @@ $router->get('/mastercds', 'MasterController@index');
 $router->get('/mastercds/{id}', 'MasterController@show');
 $router->post('/mastercds', 'MasterController@store');
 
+
+
 $router->put('/mastercds/{id}', 'MasterController@update');
 $router->delete('/mastercds/{id}', 'MasterController@destroy');
+
+$router->get('/mastercustomers', 'MasterCustomersController@index');
+$router->get('/mastercustomers/{id}', 'MasterCustomersController@show');
+$router->post('/mastercustomers', 'MasterCustomersController@store');
+$router->put('/mastercustomers/{id}', 'MasterCustomersController@update');
+$router->delete('/mastercustomers/{id}', 'MasterCustomersController@destroy');
 
 
 $router->get('/mastercategories', 'MasterCategoriesController@index');
