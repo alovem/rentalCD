@@ -57,6 +57,7 @@ class MasterController extends Controller
         $data->rate = $request->input('rate');
         $data->category = $request->input('category');
         $data->qty = $request->input('qty');
+        $data->base_qty = $request->input('qty');
         $data->baseprice = $request->input('baseprice');
         $data->save();
     
@@ -69,6 +70,7 @@ class MasterController extends Controller
         $data->rate = $request->input('rate');
         $data->category = $request->input('category');
         $data->qty = $request->input('qty');
+        $data->base_qty = $request->input('qty');
         $data->baseprice = $request->input('baseprice');
         $data->save();
     
