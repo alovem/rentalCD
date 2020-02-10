@@ -22,16 +22,31 @@ class RentalController extends Controller
     }
 
     public function index(){
-        $data = RentalModel::all();
-        return response($data);
+        try {
+            $menu = DB::table('rental')
+                      ->join('mastercustomers', 'rental.customer_id', '=', 'mastercustomers.id')
+                      ->join('mastercds', 'rental.cd_id', '=', 'mastercds.id')
+                      //->where('rental.id','=',$id)
+                      ->select('rental.*', 'mastercustomers.customername','mastercds.title')->get();
+
+            $res['success'] = true;
+            $res['data'] = $menu;
+            $res['count'] = $menu->count();
+            return response($res, 200);
+        } catch (\Illuminate\Database\QueryException $ex) {
+            $res['success'] = false;
+            $res['message'] = $ex->getMessage();
+            return response($res, 500);
+        }
     }
     public function show($id){
 
         try {
-            $menu = DB::table('mastercds')
-                      ->join('mastercategory', 'mastercds.category', '=', 'mastercategory.id')
-                      ->where('mastercds.id','=',$id)
-                      ->select('mastercds.*', 'mastercategory.categoryname')->get();
+            $menu = DB::table('rental')
+                      ->join('mastercustomers', 'rental.customer_id', '=', 'mastercustomers.id')
+                      ->join('mastercds', 'rental.cd_id', '=', 'mastercds.id')
+                      ->where('rental.id','=',$id)
+                      ->select('rental.*', 'mastercustomers.customername','mastercds.title')->get();
 
             $res['success'] = true;
             $res['data'] = $menu;
@@ -63,6 +78,7 @@ class RentalController extends Controller
         $data->qty = $request->input('qty');
         $data->date_from = $request->input('date_from');
         $data->date_to = $request->input('date_to');
+        $data->status = $request->input('status');
 
         $earlier = new \DateTime($data->date_from);
         $later = new \DateTime($data->date_to);
@@ -107,12 +123,21 @@ class RentalController extends Controller
         $datas->qty = $request->input('qty');
         $datas->date_from = $request->input('date_from');
         $datas->date_to = $request->input('date_to');
+        $datas->status = $request->input('status');
        // $data->save();
 
         $earlierupdate = new \DateTime($datas->date_from);
         $laterupdate = new \DateTime($datas->date_to);
         
         $diffupdate = $laterupdate->diff($earlierupdate)->format("%a");
+
+        $sumCD=DB::table('rental')
+                    ->where ('rental.cd_id','=', $datas->cd_id)
+                    ->where ('rental.status','=','open')
+                    ->select(DB::raw('SUM(qty) as totalqty'))->get();
+        
+                    //echo ("total cost");
+                   // echo ($sumCD[0]->totalqty);
 
 
         $cekstokupdate = DB::table('mastercds')
@@ -127,10 +152,12 @@ class RentalController extends Controller
                 
                            
             $datas->save();
-                
-            $cekbeforeqty = DB::table('rental')
-                            ->where('rental.cd_id','=',$datas->cd_id)
-                            ->select(DB::raw('SUM(qty) as totalqty'))->get();  
+
+            
+        DB::update('update mastercds set qty = base_qty - '.$sumCD[0]->totalqty.' where id = ?', [$datas->cd_id]); 
+           //DB::table('mastercds')
+           //->where('id', $datas->cd_id)
+           //->update(['qty' => 'base_qty - '.$sumCD[0]->totalqty]);
 
             //echo  ($cekbeforeqty[0]->totalqty);
                 

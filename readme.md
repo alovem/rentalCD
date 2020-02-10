@@ -26,10 +26,10 @@ Method      : GET
 
 
 URL         : /mastercds
-Response    : ['id','title',category,qty,price,created_at,update_at,categoryname]
+Response    : [id,title,category,qty,price,created_at,update_at,categoryname]
 
 URL         : /mastercds/(id)
-Response    : ['id','title',category,qty,price,created_at,update_at,categoryname]
+Response    : [id,title,category,qty,price,created_at,update_at,categoryname]
 
 ```
 
@@ -40,7 +40,7 @@ Method      : POST
 
 
 URL         : /mastercds
-Parameter    : ['title',category,qty,price]
+Parameter    : [title,category,qty,price]
 
 ```
 
@@ -50,9 +50,11 @@ Method      : POST
 
 
 URL         : /mastercds/(id)
-Response    : ['title',category,qty,price]
+Response    : [title,category,qty,price]
 
 ```
+
+
 
 
 
@@ -62,10 +64,10 @@ Method      : GET
 
 
 URL         : /mastercustomers
-Response    : ['id','customername',customeraddress,created_at,update_at]
+Response    : [id,customername,customeraddress,created_at,update_at]
 
 URL         : /mastercustomers/(id)
-Response    : ['id','customername',customeraddress,created_at,update_at]
+Response    : [id,customername,customeraddress,created_at,update_at]
 
 ```
 
@@ -76,7 +78,7 @@ Method      : POST
 
 
 URL         : /mastercustomers
-Parameter    : ['customername',customeraddress]
+Parameter    : [customername,customeraddress]
 
 ```
 
@@ -84,7 +86,7 @@ API to update master Customer data
 ```
 
 URL         : /mastercustomers/(id)
-Parameter    : ['customername',customeraddress]
+Parameter    : [customername,customeraddress]
 
 ```
 
@@ -95,8 +97,47 @@ Method      : GET
 
 
 URL         : /mastercategories
-Response    : ['id','categoryname',created_at,update_at]
+Response    : [id,categoryname,created_at,update_at]
 
 URL         : /mastercategories/(id)
+
+```
+
+
+API to get rental data
+```
+Method      : GET
+
+
+URL         : /rental
+Response    : [id,cd_id,customer_id,qty,status,date_from,date_to,customer_name,title,created_at,update_at]
+
+URL         : /rental/(id)
+Response    : [id,cd_id,customer_id,qty,status,date_from,date_to,customer_name,title,created_at,update_at]
+
+```
+
+
+API to insert rental data
+```
+Method      : POST
+
+
+URL         : /rental
+Parameter   : [cd_id,customer_id,qty,date_from(YYYY-mm-dd),date_to(YYYY-mm-dd)]
+Response    : [messages,totalcost]
+
+```
+
+
+
+API to update rental data
+```
+Method      : PUT
+
+
+URL         : /rental/(id)
+Parameter   : [cd_id,customer_id,qty,date_from(YYYY-mm-dd),date_to(YYYY-mm-dd),status(open/finished)]
+Response    : [messages,totalcost]
 
 ```

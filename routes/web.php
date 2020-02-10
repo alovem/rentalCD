@@ -30,9 +30,13 @@ $router->delete('/mastercustomers/{id}', 'MasterCustomersController@destroy');
 $router->get('/mastercategories', 'MasterCategoriesController@index');
 $router->get('/mastercategories/{id}', 'MasterCategoriesController@show');
 $router->post('/mastercategories', 'MasterCategoriesController@store');
+$router->put('/mastercategories/{id}', 'MasterCustomersController@update');
+$router->delete('/mastercategories/{id}', 'MasterCustomersController@destroy');
 
 
 $router->post('/rental', 'RentalController@store');
+$router->get('/rental', 'RentalController@index');
+$router->get('/rental/{id}', 'RentalController@show');
 $router->put('/rental/{id}', 'RentalController@update');
 
 $router->get('/hello/{name}', function ($name) use ($router) {
